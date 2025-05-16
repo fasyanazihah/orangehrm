@@ -1,42 +1,34 @@
-import LoginPage from "./../../pages/login_page.js"
+import LoginPage from "../../pages/login_page.js"
 
 describe("Login",()=>{
+    let userData
+
+    before(()=>{
+        LoginPage.loadUserData().then((data)=>userData=data)
+    })
     beforeEach(() => {
-        cy.visit('/auth/login'); 
+        LoginPage.initialize()
     })
     it("Empty Username & Empty Password",()=>{
-        LoginPage.loginAction("","")
+        LoginPage.perform()
     })
     it("Empty Username & Filled Password",()=>{
-        cy.fixture("userData").then((data)=>{
-            LoginPage.loginAction("",data.validUser.password)
-        })
+        LoginPage.perform("",userData.validUser.password)
     })
     it("Filled Username & Empty Password",()=>{
-        cy.fixture("userData").then((data)=>{
-            LoginPage.loginAction(data.validUser.username,"")
-        })
+        LoginPage.perform(userData.validUser.username,"")
     })
     it("Invalid Username & Valid Password",()=>{
-        cy.fixture("userData").then((data)=>{
-            LoginPage.loginAction(data.invalidUser.username,data.validUser.password)
-        })
+        LoginPage.perform(userData.invalidUser.username,userData.validUser.password)
     })
     it("Valid Username & Invalid Password",()=>{
-        cy.fixture("userData").then((data)=>{
-            LoginPage.loginAction(data.validUser.username,data.invalidUser.password)
-        })
+        LoginPage.perform(userData.validUser.username,userData.invalidUser.password)
     })
     it("Invalid Username & Invalid Password",()=>{
-        cy.fixture("userData").then((data)=>{
-            LoginPage.loginAction(data.invalidUser.username,data.invalidUser.password)
-        })
+        LoginPage.perform(userData.invalidUser.username,userData.invalidUser.password)
     })
     it("Valid Username & Valid Password",()=>{
-        cy.fixture("userData").then((data)=>{
-            LoginPage.loginAction(data.validUser.username,data.validUser.password)
-            cy.wait(3000)
-            cy.url().should('include', 'dashboard');
-        })
+        LoginPage.perform(userData.validUser.username,userData.validUser.password)
+        LoginPage.validateSuccessLogin()
     })
 })
