@@ -1,6 +1,6 @@
 class LoginPage {
     loadUserData(){
-        return cy.fixture("userData")
+        return cy.fixture("user_data")
     }
 
     initialize(){
