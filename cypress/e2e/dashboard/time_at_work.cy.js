@@ -1,7 +1,8 @@
 import DashboardPage from "../../pages/dashboard_page.js"
 
 describe("Time at Work",()=>{
-let userData
+    let userData
+    
     before(()=>{
         DashboardPage.loadUserData().then((data)=>userData=data)
     })
@@ -10,9 +11,9 @@ let userData
         DashboardPage.initialize(userData)
     })
 
-    // it("View Detail Attendance",()=>{
-    //     DashboardPage.viewDetailAttendance()
-    // })
+    it("View Detail Attendance",()=>{
+        DashboardPage.viewDetailAttendance()
+    })
 
     it("View Time Work",()=>{
         DashboardPage.viewTimeWork()

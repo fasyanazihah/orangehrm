@@ -49,6 +49,27 @@ class DashboardPage {
         })
     }
 
+    viewPendingSelfReview (){
+        cy.get('.orangehrm-todo-list > :nth-child(1) > .oxd-text').click()
+        cy.get('.orangehrm-header-container > .oxd-text').should('be.visible')
+        cy.url().should('include', '/performance/');
+    }
+
+    viewCandidateToReview (){
+        cy.get('.orangehrm-todo-list > :nth-child(2) > .oxd-text').click()
+        cy.get('.oxd-table-filter-header-title > .oxd-text').should('be.visible')
+        cy.url().should('include', '/recruitment/');
+    }
+
+    getListActionSummary (){
+        cy.intercept('GET',"https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/action-summary").as('getActionSummary')
+        cy.wait('@getActionSummary').then(({ response }) => {
+            expect(response.statusCode).to.eq(200);
+        })
+    }
+
+
+
 
 }
 
