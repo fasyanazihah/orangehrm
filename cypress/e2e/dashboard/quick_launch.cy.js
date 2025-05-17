@@ -1,7 +1,7 @@
  import DashboardPage from "../../pages/dashboard_page.js"
 
 describe("Quick Launch",()=>{
-     let userData
+    let userData
         
     before(()=>{
         DashboardPage.loadUserData().then((data)=>userData=data)

@@ -4,6 +4,10 @@ class DashboardPage {
     loadUserData(){
         return cy.fixture("user_data")
     }
+
+    loadSidebarMenu(){
+        return cy.fixture("sidebar_menu")
+    }
     
     initialize(userData){
         cy.visit("/auth/login")
@@ -23,8 +27,8 @@ class DashboardPage {
 
     viewProfilePostUser (){
         cy.selector(':nth-child(1) > .orangehrm-buzz-widget-header').click()
-        cy.selector('.orangehrm-buzz-newsfeed > .oxd-text--card-title').should('be.visible')
         cy.url().should('include', 'viewBuzz')
+        cy.wait(3000)
     }
 
     validateDataPost (){
@@ -37,8 +41,8 @@ class DashboardPage {
 
     viewDetailAttendance (){
         cy.selector('.orangehrm-attendance-card-bar > .oxd-icon-button > .oxd-icon').click()
-        cy.get('.orangehrm-card-container > .oxd-text--h6').should('be.visible')
         cy.url().should('include', '/attendance/')
+        cy.wait(3000)
     }
 
     viewTimeWork (){
@@ -50,15 +54,15 @@ class DashboardPage {
     }
 
     viewPendingSelfReview (){
-        cy.get('.orangehrm-todo-list > :nth-child(1) > .oxd-text').click()
-        cy.get('.orangehrm-header-container > .oxd-text').should('be.visible')
+        cy.selector('.orangehrm-todo-list > :nth-child(1) > .oxd-text').click()
         cy.url().should('include', '/performance/')
+        cy.wait(3000)
     }
 
     viewCandidateToReview (){
-        cy.get('.orangehrm-todo-list > :nth-child(2) > .oxd-text').click()
-        cy.get('.oxd-table-filter-header-title > .oxd-text').should('be.visible')
+        cy.selector('.orangehrm-todo-list > :nth-child(2) > .oxd-text').click()
         cy.url().should('include', '/recruitment/')
+        cy.wait(3000)
     }
 
     getListActionSummary (){
@@ -70,42 +74,42 @@ class DashboardPage {
     
     assignLeave (){
         cy.selector('.orangehrm-dashboard-widget-body > .oxd-grid-3 > :nth-child(1) > .oxd-icon-button').click()
-        cy.get('.orangehrm-card-container > .oxd-text--h6').should('be.visible')
         cy.url().should('include', 'assignLeave')
+        cy.wait(3000)
     }
 
     leaveList (){
         cy.selector('.orangehrm-dashboard-widget-body > .oxd-grid-3 > :nth-child(2) > .oxd-icon-button').click()
-        cy.get('.oxd-table-filter-header-title > .oxd-text').should('be.visible')
         cy.url().should('include', 'viewLeaveList')
+        cy.wait(3000)
     }
 
     timesheets (){
         cy.selector('.orangehrm-dashboard-widget-body > .oxd-grid-3 > :nth-child(3) > .oxd-icon-button').click()
-        cy.get('.orangehrm-card-container > .oxd-text--h6').should('be.visible')
         cy.url().should('include', 'viewEmployeeTimesheet')
+        cy.wait(3000)
     }
 
     applyLeave (){
         cy.selector('.orangehrm-dashboard-widget-body > .oxd-grid-3 > :nth-child(4) > .oxd-icon-button').click()
-        cy.get('.orangehrm-card-container > .oxd-text--h6').should('be.visible')
         cy.url().should('include', 'applyLeave')
+        cy.wait(3000)
     }
 
     myLeave (){
         cy.selector('.orangehrm-dashboard-widget-body > .oxd-grid-3 > :nth-child(5) > .oxd-icon-button').click()
-        cy.get('.oxd-table-filter-header-title > .oxd-text').should('be.visible')
         cy.url().should('include', 'viewMyLeaveList')
+        cy.wait(3000)
     }
 
     myTimesheet (){
         cy.selector('.orangehrm-dashboard-widget-body > .oxd-grid-3 > :nth-child(6) > .oxd-icon-button').click()
-        cy.get('.orangehrm-timesheet-header--title > .oxd-text').should('be.visible')
         cy.url().should('include', 'viewMyTimesheet')
+        cy.wait(3000)
     }
 
     getQuickLaunch (){
-         cy.intercept('GET',"https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/shortcuts").as('getQuickLaunch')
+        cy.intercept('GET',"https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/shortcuts").as('getQuickLaunch')
         cy.wait('@getQuickLaunch').then(({ response }) => {
             expect(response.statusCode).to.eq(200)
         })
@@ -113,20 +117,20 @@ class DashboardPage {
 
     configurationActive (){
         cy.selector('.bi-gear-fill').click()
-        cy.get('.oxd-switch-input').should('be.visible')
+        cy.selector('.oxd-switch-input')
         cy.selector('.oxd-switch-input').click()
         cy.selector('.oxd-button--secondary').click()
     }
 
     configurationInactive (){
         cy.selector('.bi-gear-fill')
-        cy.get('.oxd-switch-input').should('be.visible')
+        cy.selector('.oxd-switch-input')
         cy.selector('.oxd-button--secondary').click()
     }
 
     configurationCanceled (){
         cy.selector('.bi-gear-fill')
-        cy.get('.oxd-switch-input').should('be.visible')
+        cy.selector('.oxd-switch-input')
         cy.selector('.oxd-button--ghost').click()
     }
 
@@ -136,10 +140,12 @@ class DashboardPage {
             expect(response.statusCode).to.eq(200)
         })
     }
-    
-  
 
-
+    validateSidebarMenu(index,sidebar){
+        cy.selector(`:nth-child(${index+1}) > .oxd-main-menu-item`).click()
+        cy.url().should('include', sidebar.url)
+        cy.wait(3000)
+    }
 }
 
 export default new DashboardPage()

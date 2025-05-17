@@ -1,0 +1,50 @@
+[
+    {
+        "name" : "Admin",
+        "url" : "admin/viewSystemUsers"
+    },
+    {
+        "name" : "PIM",
+        "url" : "pim/viewEmployeeList"
+    },
+    {
+        "name" : "Leave",
+        "url" : "leave/viewLeaveList"
+    },
+    {
+        "name" : "Time",
+        "url" : "time/viewEmployeeTimesheet"
+    },
+    {
+        "name" : "Recruitment",
+        "url" : "recruitment/viewCandidates"
+    },
+    {
+        "name" : "My Info",
+        "url" : "pim/viewPersonalDetails"
+    },
+    {
+        "name" : "Performance",
+        "url" : "performance/searchEvaluatePerformanceReview"
+    },
+    {
+        "name" : "Dashboard",
+        "url" : "dashboard/index"
+    },
+    {
+        "name" : "Directory",
+        "url" : "directory/viewDirectory"
+    },
+    {
+        "name" : "Maintenance",
+        "url" : "maintenance/purgeEmployee"
+    },
+    {
+        "name" : "Claim",
+        "url" : "claim/viewAssignClaim"
+    },
+    {
+        "name" : "Buzz",
+        "url" : "buzz/viewBuzz"
+    }
+]

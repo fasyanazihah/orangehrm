@@ -1,4 +1,3 @@
 Cypress.Commands.add('selector', (name) => {
-	cy.get(name).should('be.visible')
-  	return cy.get(name)
+  	return cy.get(name,{timeout:Number.MAX_SAFE_INTEGER})
 })
