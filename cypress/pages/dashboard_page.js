@@ -147,6 +147,13 @@ class DashboardPage {
         cy.wait(3000)
     }
 
+    validateSidebarMenu(index,navigation){
+        cy.selector('.oxd-userdropdown-tab').click()
+        cy.selector(`:nth-child(${index+1}) > .oxd-userdropdown-link`).click()
+        if(navigation.url) cy.url().should('include', navigation.url)
+        cy.wait(3000)
+    }
+
     validateLabelChart(left,right){
         cy.selector(left).invoke('attr', 'style').should('not.exist')
         cy.selector(left).click()
