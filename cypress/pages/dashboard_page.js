@@ -28,11 +28,25 @@ class DashboardPage {
     }
 
     validateDataPost (){
-          cy.intercept('GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/buzz/feed?limit=5&offset=0&sortOrder=DESC&sortField=share.createdAtUtc').as('getBuzzList');
-            cy.wait('@getBuzzList').then(({ response }) => {
+        cy.intercept('GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/buzz/feed?limit=5&offset=0&sortOrder=DESC&sortField=share.createdAtUtc').as('getBuzzList');
+        cy.wait('@getBuzzList').then(({ response }) => {
             expect(response.statusCode).to.eq(200);
             expect(response.body.data).to.have.length.lessThan(6);
         });
+    }
+
+    viewDetailAttendance (){
+        cy.selector('.orangehrm-attendance-card-bar > .oxd-icon-button > .oxd-icon').click()
+        cy.get('.orangehrm-card-container > .oxd-text--h6').should('be.visible')
+        cy.url().should('include', '/attendance/');
+    }
+
+    viewTimeWork (){
+        cy.reload()
+        cy.intercept('GET', "https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/time-at-work?**").as('getTimeWork');
+        cy.wait('@getTimeWork').then(({ response }) => {
+            expect(response.statusCode).to.eq(200);
+        })
     }
 
 
