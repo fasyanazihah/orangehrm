@@ -35,6 +35,7 @@ describe("Quick Launch",()=>{
         DashboardPage.myTimesheet()
     })
 
-
-
+    it("Get Quick Launch",()=>{
+        DashboardPage.getQuickLaunch()
+    })
 })
