@@ -14,8 +14,9 @@ class LoginPage {
     }
 
     validateSuccessLogin(){
-        cy.get('.oxd-topbar-header-breadcrumb > .oxd-text').should("be.visible")
+        cy.selector('.oxd-topbar-header-breadcrumb > .oxd-text')
         cy.url().should('include', 'dashboard')
+        cy.wait(3000)
     }
 }
 
