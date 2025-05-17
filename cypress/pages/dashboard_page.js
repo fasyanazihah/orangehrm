@@ -147,7 +147,7 @@ class DashboardPage {
         cy.wait(3000)
     }
 
-    validateSidebarMenu(index,navigation){
+    validateNavigationMenu(index,navigation){
         cy.selector('.oxd-userdropdown-tab').click()
         cy.selector(`:nth-child(${index+1}) > .oxd-userdropdown-link`).click()
         if(navigation.url) cy.url().should('include', navigation.url)

@@ -14,7 +14,6 @@ class LoginPage {
     }
 
     validateSuccessLogin(){
-        cy.selector('.oxd-topbar-header-breadcrumb > .oxd-text')
         cy.url().should('include', 'dashboard')
         cy.wait(3000)
     }

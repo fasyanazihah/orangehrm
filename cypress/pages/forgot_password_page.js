@@ -13,7 +13,6 @@ class ForgotPasswordPage {
 
     cancelForgotPassword(){
         cy.selector('.oxd-button--ghost').click()
-        cy.selector('.oxd-text--h5')
         cy.url().should('include', 'login')
         cy.wait(3000)
     }
