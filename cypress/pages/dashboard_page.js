@@ -118,20 +118,21 @@ class DashboardPage {
 
     configurationActive (){
         cy.get('.bi-gear-fill').click()
-        cy.get('.oxd-switch-input')
+        cy.get('.oxd-switch-input').should("be.visible")
         cy.get('.oxd-switch-input').click()
         cy.get('.oxd-button--secondary').click()
     }
 
     configurationInactive (){
-        cy.get('.bi-gear-fill')
-        cy.get('.oxd-switch-input')
+        cy.get('.bi-gear-fill').click()
+        cy.get('.oxd-switch-input').should("be.visible")
+        cy.get('.oxd-switch-input').click()
         cy.get('.oxd-button--secondary').click()
     }
 
     configurationCanceled (){
-        cy.get('.bi-gear-fill')
-        cy.get('.oxd-switch-input')
+        cy.get('.bi-gear-fill').click()
+        cy.get('.oxd-switch-input').should("be.visible")
         cy.get('.oxd-button--ghost').click()
     }
 
