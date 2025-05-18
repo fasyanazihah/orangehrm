@@ -17,9 +17,6 @@ class DashboardPage {
     }
 
     scrollListPost (){
-        cy.wait(1000)
-        cy.get(':nth-child(4) > .oxd-sheet').scrollIntoView({ behavior: 'smooth'}).then($el => cy.window().then(win => win.scrollTo(0, win.scrollY - 150)))
-        cy.wait(1000)
         cy.get(':nth-child(4) > .oxd-sheet > .orangehrm-dashboard-widget-body').then($el => expect($el[0].scrollHeight > $el[0].clientHeight).to.be.true)
         cy.get(':nth-child(4) > .oxd-sheet > .orangehrm-dashboard-widget-body').scrollTo('bottom',{duration: 1000})
         cy.wait(1000)
