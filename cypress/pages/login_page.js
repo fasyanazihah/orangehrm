@@ -8,9 +8,9 @@ class LoginPage {
     }
 
     perform(username="",password=""){
-        if(username) cy.selector(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').clear().type(username)
-        if(password) cy.selector(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input').clear().type(password)
-        cy.selector('.oxd-button').click()
+        if(username) cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').clear().type(username)
+        if(password) cy.get(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input').clear().type(password)
+        cy.get('.oxd-button').click()
     }
 
     validateSuccessLogin(){

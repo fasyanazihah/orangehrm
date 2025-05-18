@@ -12,20 +12,20 @@ class ForgotPasswordPage {
     }
 
     cancelForgotPassword(){
-        cy.selector('.oxd-button--ghost').click()
+        cy.get('.oxd-button--ghost').click()
         cy.url().should('include', 'login')
         cy.wait(3000)
     }
 
     emptyUsername(statusMessage){
-        cy.selector('.oxd-input').clear()
-        cy.selector('.oxd-button--secondary').click()
+        cy.get('.oxd-input').clear()
+        cy.get('.oxd-button--secondary').click()
         cy.contains(statusMessage.emptyField)
     }
 
     validUsername(userData,statusMessage){
-        cy.selector('.oxd-input').clear().type(userData.validUser.username)
-        cy.selector('.oxd-button--secondary').click()
+        cy.get('.oxd-input').clear().type(userData.validUser.username)
+        cy.get('.oxd-button--secondary').click()
         cy.contains(statusMessage.successMessage)
     }
 }
